@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sunshine World 🌻 — A Little Place Just for You</title>
+<meta name="theme-color" content="#FFE58A">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌻</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="scene-welcome">
+<!-- reusable sunflower -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="sf" viewBox="-50 -50 100 100">
+      <g fill="#F5C542" stroke="#E0A91F" stroke-width="1.5">
+        <ellipse cx="0" cy="-32" rx="9" ry="18"/><ellipse cx="0" cy="-32" rx="9" ry="18" transform="rotate(30)"/>
+        <ellipse cx="0" cy="-32" rx="9" ry="18" transform="rotate(60)"/><ellipse cx="0" cy="-32" rx="9" ry="18" transform="rotate(90)"/>
+        <ellipse cx="0" cy="-32" rx="9" ry="18" transform="rotate(120)"/><ellipse cx="0" cy="-32" rx="9" ry="18" transform="rotate(150)"/>
+        <ellipse cx="0" cy="-32" rx="9" ry="18" transform="rotate(180)"/><ellipse cx="0" cy="-32" rx="9" ry="18" transform="rotate(210)"/>
+        <ellipse cx="0" cy="-32" rx="9" ry="18" transform="rotate(240)"/><ellipse cx="0" cy="-32" rx="9" ry="18" transform="rotate(270)"/>
+        <ellipse cx="0" cy="-32" rx="9" ry="18" transform="rotate(300)"/><ellipse cx="0" cy="-32" rx="9" ry="18" transform="rotate(330)"/>
+      </g>
+      <circle r="16" fill="#8B654B"/><circle r="10" fill="#6e4a35"/>
+      <circle cx="-4" cy="-4" r="2" fill="#a47c5f"/><circle cx="5" cy="3" r="2" fill="#a47c5f"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="sky" aria-hidden="true">
+  <div class="layer sun" data-depth="6"></div>
+  <div class="layer cloud c1" data-depth="10"></div>
+  <div class="layer cloud c2" data-depth="16"></div>
+  <div class="layer cloud c3" data-depth="8"></div>
+  <div class="stars"></div>
+</div>
+<div id="petals" aria-hidden="true"></div>
+
+<!-- Garden foreground -->
+<svg class="garden layer" data-depth="-10" viewBox="0 0 400 170" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <path d="M0 170V120Q100 95 200 118T400 112V170Z" fill="#9ccf7a"/>
+  <path d="M0 170V145Q120 125 220 142T400 136V170Z" fill="#7fbb62"/>
+  <g class="stalk s1"><path d="M40 160V95" stroke="#5f9a49" stroke-width="5"/><use href="#sf" x="12" y="55" width="56" height="56"/></g>
+  <g class="stalk s2"><path d="M110 165V110" stroke="#5f9a49" stroke-width="5"/><use href="#sf" x="88" y="78" width="44" height="44"/></g>
+  <g class="stalk s3"><path d="M300 165V105" stroke="#5f9a49" stroke-width="5"/><use href="#sf" x="274" y="70" width="52" height="52"/></g>
+  <g class="stalk s1"><path d="M365 160V90" stroke="#5f9a49" stroke-width="5"/><use href="#sf" x="335" y="48" width="60" height="60"/></g>
+  <g class="stalk s2"><path d="M165 168V135" stroke="#5f9a49" stroke-width="4"/><use href="#sf" x="150" y="115" width="30" height="30"/></g>
+</svg>
+
+<main id="app">
+  <!-- SCREEN 1: WELCOME -->
+  <section class="screen active" id="screen-welcome" aria-labelledby="w-title">
+    <div class="hero">
+      <div class="companion-wrap">
+        <p class="bubble" id="bubble" role="status" aria-live="polite" hidden></p>
+        <button class="companion" id="companion" aria-label="Say hi to your little blue friend">
+          <svg viewBox="0 0 220 250" role="img" aria-label="A cute original blue alien holding a sunflower">
+            <g class="body">
+              <ellipse cx="110" cy="232" rx="52" ry="8" fill="#000" opacity=".1"/>
+              <ellipse cx="110" cy="178" rx="48" ry="50" fill="#7EC3E6"/>
+              <ellipse cx="110" cy="190" rx="30" ry="32" fill="#CDEBF7"/>
+              <ellipse cx="76" cy="222" rx="16" ry="9" fill="#6BB4DA"/><ellipse cx="144" cy="222" rx="16" ry="9" fill="#6BB4DA"/>
+              <g class="ear l"><path d="M62 78C20 58 4 20 18 8C44 4 70 30 80 62Z" fill="#7EC3E6"/><path d="M60 68C36 54 26 32 30 20C46 22 62 40 68 60Z" fill="#F7B8C8"/></g>
+              <g class="ear r"><path d="M158 78C200 58 216 20 202 8C176 4 150 30 140 62Z" fill="#7EC3E6"/><path d="M160 68C184 54 194 32 190 20C174 22 158 40 152 60Z" fill="#F7B8C8"/></g>
+              <ellipse cx="110" cy="100" rx="64" ry="58" fill="#7EC3E6"/>
+              <path d="M96 46Q98 30 90 22M110 44Q112 26 110 16M124 46Q122 30 130 22" stroke="#7EC3E6" stroke-width="7" stroke-linecap="round" fill="none"/>
+              <ellipse cx="110" cy="116" rx="34" ry="26" fill="#CDEBF7"/>
+              <ellipse cx="110" cy="84" rx="7" ry="5" fill="#2E3A59"/>
+              <g class="eyes"><ellipse cx="82" cy="98" rx="11" ry="15" fill="#2E3A59"/><ellipse cx="138" cy="98" rx="11" ry="15" fill="#2E3A59"/>
+                <circle cx="86" cy="92" r="4" fill="#fff"/><circle cx="142" cy="92" r="4" fill="#fff"/></g>
+              <path class="mouth" d="M92 118Q110 136 128 118" stroke="#2E3A59" stroke-width="4" stroke-linecap="round" fill="none"/>
+              <circle cx="66" cy="116" r="8" fill="#F7B8C8" opacity=".7"/><circle cx="154" cy="116" r="8" fill="#F7B8C8" opacity=".7"/>
+              <path d="M62 170Q42 190 66 205" stroke="#7EC3E6" stroke-width="14" stroke-linecap="round" fill="none"/>
+              <path d="M158 168Q180 160 166 138" stroke="#7EC3E6" stroke-width="14" stroke-linecap="round" fill="none"/>
+              <use href="#sf" x="136" y="100" width="62" height="62" class="held"/>
+            </g>
+          </svg>
+        </button>
+      </div>
+      <h1 id="w-title"></h1>
+      <p class="lead" id="w-line1"></p>
+      <p class="sub" id="w-line2"></p>
+      <button class="btn" id="btn-start"></button>
+    </div>
+    <!-- tiny secret: a hidden little sunflower -->
+    <button class="secret" id="secret" aria-label="A tiny hidden sunflower. Tap to find out its secret.">
+      <svg viewBox="-50 -50 100 100"><use href="#sf" x="-50" y="-50" width="100" height="100"/></svg>
+    </button>
+  </section>
+
+  <!-- SCREEN 2: MOOD -->
+  <section class="screen" id="screen-mood" aria-labelledby="m-title">
+    <div class="hero">
+      <h2 id="m-title"></h2>
+      <p class="lead" id="m-text"></p>
+      <div class="mood-grid" id="mood-grid"></div>
+      <div class="mood-extras">
+        <button class="btn" id="btn-universe">✨ Her Little Universe</button>
+        <button class="btn" id="btn-surprise">🎁 Secret Surprise</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAD: a quiet garden after rain -->
+  <section class="screen journey-screen sad-screen" id="screen-sad" aria-labelledby="sad-title">
+    <div class="journey">
+      <header class="journey-heading">
+        <p class="eyebrow">A soft place to land</p>
+        <h1 id="sad-title"></h1>
+      </header>
+      <div class="sad-scene" aria-hidden="true">
+        <div class="sad-sunlight"></div>
+        <div class="sad-cloud cloud-one"></div>
+        <div class="sad-cloud cloud-two"></div>
+        <div class="rain-streaks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="sad-buddy" id="sad-buddy">
+          <svg viewBox="0 0 180 190">
+            <ellipse cx="92" cy="177" rx="48" ry="7" fill="#806b52" opacity=".17"/>
+            <ellipse cx="68" cy="162" rx="15" ry="8" fill="#68b2d8"/>
+            <ellipse cx="112" cy="162" rx="15" ry="8" fill="#68b2d8"/>
+            <ellipse cx="90" cy="128" rx="38" ry="39" fill="#7ec3e6"/>
+            <ellipse cx="90" cy="137" rx="23" ry="24" fill="#cdebf7"/>
+            <path class="sad-arms" d="M56 116Q36 128 49 146M124 116Q145 123 135 143" fill="none" stroke="#7ec3e6" stroke-width="12" stroke-linecap="round"/>
+            <path d="M53 68Q30 49 24 24Q49 22 68 55M127 68Q150 49 156 24Q131 22 112 55" fill="#7ec3e6"/>
+            <path d="M48 53Q38 41 36 32Q49 34 58 51M132 53Q142 41 144 32Q131 34 122 51" fill="#f7b8c8"/>
+            <ellipse cx="90" cy="81" rx="45" ry="41" fill="#7ec3e6"/>
+            <path d="M82 42Q85 31 79 25M90 39V20M99 42Q96 31 102 25" stroke="#7ec3e6" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <ellipse cx="74" cy="82" rx="6" ry="9" fill="#2e3a59"/>
+            <ellipse cx="106" cy="82" rx="6" ry="9" fill="#2e3a59"/>
+            <circle cx="76" cy="79" r="2" fill="#fff"/><circle cx="108" cy="79" r="2" fill="#fff"/>
+            <path d="M81 100Q90 108 99 100" fill="none" stroke="#2e3a59" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="60" cy="99" r="6" fill="#f7b8c8" opacity=".75"/><circle cx="120" cy="99" r="6" fill="#f7b8c8" opacity=".75"/>
+            <path d="M125 126V89" stroke="#5f9a49" stroke-width="4"/>
+            <use href="#sf" x="108" y="58" width="36" height="36"/>
+            <path d="M130 94q4 5 0 8q-4-3 0-8" fill="#8bd4ef"/>
+          </svg>
+        </div>
+        <svg class="rain-garden" viewBox="0 0 400 130" preserveAspectRatio="xMidYMax slice">
+          <path d="M0 130V82Q95 58 200 82T400 73V130Z" fill="#b9d695"/>
+          <path d="M0 130V105Q120 86 220 104T400 94V130Z" fill="#91bf75"/>
+          <g class="wet-flower"><path d="M58 120V62" stroke="#638c50" stroke-width="4"/><use href="#sf" x="38" y="32" width="40" height="40"/><path d="M58 74q5 6 0 11q-5-4 0-11" fill="#9adcf0"/></g>
+          <g class="wet-flower flower-two"><path d="M337 120V53" stroke="#638c50" stroke-width="4"/><use href="#sf" x="313" y="17" width="48" height="48"/><path d="M333 66q5 6 0 11q-5-4 0-11" fill="#9adcf0"/></g>
+          <g class="wet-flower flower-three"><path d="M250 126V90" stroke="#638c50" stroke-width="3"/><use href="#sf" x="234" y="74" width="32" height="32"/></g>
+        </svg>
+      </div>
+      <p class="sad-letter" id="sad-letter" aria-live="off"></p>
+      <div class="choice-grid" aria-label="Choose what feels right">
+        <button class="choice-card" data-sad-action="hug">🫂 <span>I need a virtual hug</span></button>
+        <button class="choice-card" data-sad-action="sweet">💛 <span>Tell me something sweet</span></button>
+        <button class="choice-card" data-sad-action="distract">✨ <span>Distract me a little</span></button>
+        <button class="choice-card" data-sad-action="sit">🌧️ <span>I just want to sit here</span></button>
+      </div>
+      <p class="journey-feedback" id="sad-feedback" role="status" aria-live="polite" hidden></p>
+      <button class="btn back-to-moods" data-back-to-moods>← Back to moods</button>
+    </div>
+  </section>
+
+  <!-- TIRED: a cosy room for a little rest -->
+  <section class="screen journey-screen tired-screen" id="screen-tired" aria-labelledby="tired-title">
+    <div class="journey">
+      <header class="journey-heading">
+        <p class="eyebrow">No rush. Just rest.</p>
+        <h1 id="tired-title"></h1>
+      </header>
+      <div class="bedroom-scene" aria-hidden="true">
+        <div class="bedroom-window">
+          <span class="window-moon"></span>
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="lamp">
+          <span class="lamp-glow"></span><span class="lamp-shade"></span><span class="lamp-stem"></span><span class="lamp-base"></span>
+        </div>
+        <span class="floating-star star-one">✦</span><span class="floating-star star-two">✧</span><span class="floating-star star-three">✦</span>
+        <div class="bed">
+          <div class="pillow"></div><div class="blanket"></div>
+          <div class="sleeping-buddy">
+            <svg viewBox="0 0 160 145">
+              <ellipse cx="78" cy="133" rx="52" ry="7" fill="#473e59" opacity=".18"/>
+              <ellipse cx="80" cy="104" rx="49" ry="31" fill="#7ec3e6"/>
+              <ellipse cx="82" cy="107" rx="31" ry="21" fill="#cdebf7"/>
+              <path d="M35 104Q18 89 30 77M124 102Q142 89 132 76" fill="none" stroke="#7ec3e6" stroke-width="12" stroke-linecap="round"/>
+              <path d="M41 56Q24 42 21 20Q43 20 57 47M116 56Q136 40 139 20Q116 20 103 47" fill="#7ec3e6"/>
+              <path d="M39 44Q31 34 32 28Q43 31 48 43M118 44Q128 34 127 28Q116 31 111 43" fill="#f7b8c8"/>
+              <ellipse cx="80" cy="70" rx="43" ry="38" fill="#7ec3e6"/>
+              <path d="M72 34Q74 25 69 21M80 32V17M88 34Q86 25 91 21" fill="none" stroke="#7ec3e6" stroke-width="5" stroke-linecap="round"/>
+              <path d="M62 72q7 8 14 0M87 72q7 8 14 0" fill="none" stroke="#2e3a59" stroke-width="3" stroke-linecap="round"/>
+              <path d="M74 88q6 5 12 0" fill="none" stroke="#2e3a59" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="52" cy="85" r="6" fill="#f7b8c8" opacity=".7"/><circle cx="108" cy="85" r="6" fill="#f7b8c8" opacity=".7"/>
+            </svg>
+            <span class="zzz">z z z</span>
+          </div>
+          <span class="breathing-glow"></span>
+        </div>
+      </div>
+      <div class="rest-controls">
+        <button class="choice-card" data-tired-action="hug">🫂 <span>Come get a virtual hug</span></button>
+        <button class="choice-card" data-tired-action="rest">🌙 <span>Settle in and breathe</span></button>
+        <button class="choice-card" data-tired-action="message">💌 <span>A little message for me</span></button>
+        <button class="choice-card sound-control" id="rain-sound" aria-pressed="false"><span class="audio-icon" aria-hidden="true">🔇</span><span class="audio-label">Play gentle rain</span></button>
+      </div>
+      <p class="journey-feedback" id="tired-feedback" role="status" aria-live="polite" hidden></p>
+      <button class="btn back-to-moods" data-back-to-moods>← Back to moods</button>
+    </div>
+  </section>
+
+  <!-- ANGRY: playful, gentle stress relief -->
+  <section class="screen journey-screen angry-screen" id="screen-angry" aria-labelledby="angry-title">
+    <div class="journey">
+      <header class="journey-heading">
+        <p class="eyebrow">Your feelings are welcome here</p>
+        <h1 id="angry-title"></h1>
+      </header>
+      <p class="journey-intro" id="angry-intro"></p>
+      <div class="mini-game-card">
+        <div class="game-heading"><h2 id="bubble-game-title"></h2><p>Bubbles popped: <strong id="angry-score">0</strong></p></div>
+        <div class="bubble-field" id="angry-bubbles" aria-label="Pop a bubble for a tiny stress-free moment"></div>
+        <div class="game-actions">
+          <button class="choice-card" data-angry-action="breath">🌬️ <span>Take one soft breath</span></button>
+          <button class="choice-card" data-angry-action="surprise">🎈 <span>A silly surprise</span></button>
+          <button class="choice-card" id="angry-replay">🔄 <span>Reset the bubbles</span></button>
+        </div>
+      </div>
+      <p class="journey-feedback" id="angry-feedback" role="status" aria-live="polite" hidden></p>
+      <button class="btn back-to-moods" data-back-to-moods>← Back to moods</button>
+    </div>
+  </section>
+
+  <!-- BORED: three replayable little games -->
+  <section class="screen journey-screen bored-screen" id="screen-bored" aria-labelledby="bored-title">
+    <div class="journey">
+      <header class="journey-heading">
+        <p class="eyebrow">Tiny games, zero pressure</p>
+        <h1 id="bored-title"></h1>
+      </header>
+      <section class="mini-game-card" aria-labelledby="catch-title">
+        <div class="game-heading"><h2 id="catch-title"></h2><p>Caught: <strong id="catch-score">0</strong></p></div>
+        <div class="falling-field" id="falling-field" aria-label="Catch a falling sunflower"></div>
+        <button class="choice-card replay-button" id="catch-replay">🔄 <span>Replay sunflower catch</span></button>
+      </section>
+      <section class="mini-game-card" aria-labelledby="emoji-title">
+        <div class="game-heading"><h2 id="emoji-title"></h2><p>Guessed: <strong id="emoji-score">0</strong></p></div>
+        <p class="game-clue" id="emoji-clue"></p>
+        <div class="emoji-options" id="emoji-options"></div>
+        <p class="game-feedback" id="emoji-feedback" role="status" aria-live="polite" hidden></p>
+        <button class="choice-card replay-button" id="emoji-next">🎲 <span>Another emoji riddle</span></button>
+        <button class="chip replay-button" id="emoji-replay">Reset emoji score</button>
+      </section>
+      <section class="mini-game-card gift-game" aria-labelledby="bored-gift-title">
+        <h2 id="bored-gift-title"></h2>
+        <button class="gift-button" id="bored-gift"><span aria-hidden="true">🎁</span><span id="bored-gift-label"></span></button>
+        <p class="game-feedback" id="bored-gift-feedback" role="status" aria-live="polite" hidden></p>
+      </section>
+      <button class="btn back-to-moods" data-back-to-moods>← Back to moods</button>
+    </div>
+  </section>
+
+  <!-- HAPPY: an interactive little celebration -->
+  <section class="screen journey-screen happy-screen" id="screen-happy" aria-labelledby="happy-title">
+    <div class="happy-confetti" id="happy-confetti" aria-hidden="true"></div>
+    <div class="journey">
+      <header class="journey-heading">
+        <p class="eyebrow">Today deserves a little sparkle</p>
+        <h1 id="happy-title"></h1>
+      </header>
+      <p class="journey-intro" id="happy-intro"></p>
+      <div class="happy-stage">
+        <span class="happy-flower flower-a" aria-hidden="true">🌻</span>
+        <span class="happy-flower flower-b" aria-hidden="true">🌻</span>
+        <div class="happy-buddy" id="happy-buddy" aria-hidden="true">
+          <svg viewBox="0 0 160 170">
+            <ellipse cx="80" cy="158" rx="43" ry="6" fill="#604c69" opacity=".16"/>
+            <ellipse cx="60" cy="146" rx="14" ry="7" fill="#68b2d8"/><ellipse cx="101" cy="146" rx="14" ry="7" fill="#68b2d8"/>
+            <ellipse cx="80" cy="119" rx="34" ry="35" fill="#7ec3e6"/><ellipse cx="80" cy="126" rx="21" ry="22" fill="#cdebf7"/>
+            <path d="M51 112Q33 119 42 138M109 112Q127 119 118 138" fill="none" stroke="#7ec3e6" stroke-width="11" stroke-linecap="round"/>
+            <path d="M48 61Q25 43 23 19Q46 18 61 47M112 61Q135 43 137 19Q114 18 99 47" fill="#7ec3e6"/>
+            <path d="M44 47Q35 35 35 27Q47 30 53 44M116 47Q125 35 125 27Q113 30 107 44" fill="#f7b8c8"/>
+            <ellipse cx="80" cy="73" rx="40" ry="36" fill="#7ec3e6"/>
+            <path d="M74 39Q75 29 70 24M80 36V20M86 39Q85 29 90 24" fill="none" stroke="#7ec3e6" stroke-width="5" stroke-linecap="round"/>
+            <ellipse cx="65" cy="73" rx="5" ry="7" fill="#2e3a59"/><ellipse cx="95" cy="73" rx="5" ry="7" fill="#2e3a59"/>
+            <circle cx="66" cy="71" r="2" fill="#fff"/><circle cx="96" cy="71" r="2" fill="#fff"/>
+            <path d="M69 91Q80 102 91 91" fill="none" stroke="#2e3a59" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="52" cy="88" r="6" fill="#f7b8c8" opacity=".75"/><circle cx="108" cy="88" r="6" fill="#f7b8c8" opacity=".75"/>
+            <use href="#sf" x="105" y="95" width="38" height="38"/>
+          </svg>
+        </div>
+      </div>
+      <div class="celebration-actions">
+        <button class="choice-card" data-happy-action="dance">💃 <span>Dance with your blue buddy</span></button>
+        <button class="choice-card" data-happy-action="message">💌 <span>A little sunshine note</span></button>
+        <button class="choice-card" data-happy-action="confetti">🎉 <span>More confetti, please</span></button>
+      </div>
+      <p class="journey-feedback" id="happy-feedback" role="status" aria-live="polite" hidden></p>
+      <button class="btn back-to-moods" data-back-to-moods>← Back to moods</button>
+    </div>
+  </section>
+
+  <!-- PHASE 3: choose a little world -->
+  <section class="screen journey-screen universe-screen" id="screen-universe" aria-labelledby="universe-title">
+    <div class="journey">
+      <header class="journey-heading">
+        <p class="eyebrow">Made for your kind of magic</p>
+        <h1 id="universe-title"></h1>
+      </header>
+      <p class="journey-intro" id="universe-intro"></p>
+      <div class="universe-grid" id="universe-grid"></div>
+      <button class="btn back-to-moods" data-back-to-moods>← Back to moods</button>
+    </div>
+  </section>
+
+  <!-- Shared interactive destination, populated from config.js -->
+  <section class="screen journey-screen world-screen" id="screen-world" aria-labelledby="world-title">
+    <div class="journey">
+      <header class="journey-heading">
+        <p class="eyebrow" id="world-eyebrow"></p>
+        <h1 id="world-title"></h1>
+      </header>
+      <div class="world-visual" id="world-visual">
+        <span class="world-art" id="world-art" aria-hidden="true"></span>
+        <p id="world-description"></p>
+      </div>
+      <div class="world-controls" id="world-controls"></div>
+      <p class="journey-feedback" id="world-feedback" role="status" aria-live="polite" hidden></p>
+      <div class="world-navigation">
+        <button class="btn" data-back-to-universe>← Back to little worlds</button>
+        <button class="chip" data-back-to-moods>💛 Back to moods</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHASE 4: a gentle clue trail and final letter -->
+  <section class="screen journey-screen surprise-screen" id="screen-surprise" aria-labelledby="surprise-title">
+    <div class="journey">
+      <header class="journey-heading">
+        <p class="eyebrow">A tiny secret, just for you</p>
+        <h1 id="surprise-title"></h1>
+      </header>
+      <p class="journey-intro" id="surprise-intro"></p>
+      <button class="surprise-gift" id="surprise-gift" aria-expanded="false">
+        <span class="gift-art" aria-hidden="true">🎁</span>
+        <span id="surprise-gift-label"></span>
+      </button>
+      <p class="journey-feedback" id="surprise-gift-message" role="status" aria-live="polite" hidden></p>
+      <div class="clue-heading"><h2 id="clue-title"></h2><p id="clue-progress"></p></div>
+      <div class="clue-grid" id="clue-grid"></div>
+      <p class="journey-feedback" id="clue-reveal" role="status" aria-live="polite" hidden></p>
+      <button class="btn reveal-button" id="reveal-letter" hidden></button>
+      <button class="chip" data-back-to-moods>💛 Back to moods</button>
+    </div>
+  </section>
+
+  <section class="screen journey-screen reveal-screen" id="screen-reveal" aria-labelledby="reveal-title">
+    <div class="journey">
+      <p class="eyebrow" id="reveal-eyebrow"></p>
+      <h1 id="reveal-title"></h1>
+      <div class="final-letter" id="final-letter" aria-live="polite"></div>
+      <button class="btn" data-back-to-moods>← Back to moods</button>
+    </div>
+  </section>
+</main>
+
+<nav class="topbar" id="topbar" hidden>
+  <button class="chip" id="btn-back" aria-label="Go back">← Back</button>
+  <button class="chip" id="btn-home" aria-label="Home">🌻 Home</button>
+  <button class="chip" id="btn-moods" aria-label="Choose a mood">💛 Moods</button>
+</nav>
+<p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
+
+<div class="overlay" id="modal" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="d-title">
+    <svg class="dflower" viewBox="-50 -50 100 100" aria-hidden="true"><use href="#sf" x="-50" y="-50" width="100" height="100"/></svg>
+    <h2 id="d-title"></h2>
+    <p id="d-body"></p>
+    <button class="btn" id="d-btn"></button>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

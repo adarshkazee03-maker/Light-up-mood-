@@ -178,7 +178,7 @@
       rainAudio.gain.gain.setTargetAtTime(0.0001, rainAudio.context.currentTime, .12);
       button.setAttribute("aria-pressed", "false");
       icon.textContent = "🔇";
-      label.textContent = "Play gentle rain";
+      label.textContent = "Rain sound play gara";
       return;
     }
     try {
@@ -206,10 +206,10 @@
       rainAudio.gain.gain.setTargetAtTime(.035, rainAudio.context.currentTime, .2);
       button.setAttribute("aria-pressed", "true");
       icon.textContent = "🔊";
-      label.textContent = "Mute gentle rain";
+      label.textContent = "Rain sound mute gara";
     } catch (error) {
       console.error("Could not enable the optional rain sound.", error);
-      showFeedback(tiredFeedback, "The rain sound isn't available in this browser, but you can still rest here. 💛");
+      showFeedback(tiredFeedback, "Yo browser ma rain sound chalena, tara timi yaha aaram garna sakchhau hai. 💛");
     }
   }
   function stopRainSound() {
@@ -224,7 +224,7 @@
     const button = $("rain-sound");
     button.setAttribute("aria-pressed", "false");
     button.querySelector(".audio-icon").textContent = "🔇";
-    button.querySelector(".audio-label").textContent = "Play gentle rain";
+    button.querySelector(".audio-label").textContent = "Rain sound play gara";
   }
   $("rain-sound").onclick = toggleRainSound;
 
@@ -245,7 +245,7 @@
       bubble.className = "bubble-target";
       bubble.type = "button";
       bubble.textContent = ["🫧", "🔵", "🟣", "🟡"][i % 4];
-      bubble.setAttribute("aria-label", `Squish playful bubble ${i + 1}`);
+      bubble.setAttribute("aria-label", `Silly bubble no. ${i + 1} pop gara`);
       field.appendChild(bubble);
     }
   }
@@ -257,7 +257,7 @@
     angryScore++;
     $("angry-score").textContent = angryScore;
     showFeedback(angryFeedback, angryScore === 10
-      ? "All ten bubbles popped! You did it your way, at your pace. 💛"
+      ? "Sabai 10 ota bubbles pop bhayo! Timro pace ma, timrai tarika le. 💛"
       : pick(C.journeys.angry.popMessages));
   };
   $("angry-replay").onclick = resetAngryGame;
@@ -279,7 +279,7 @@
     flower.className = "falling-flower";
     flower.type = "button";
     flower.textContent = "🌻";
-    flower.setAttribute("aria-label", "Catch this falling sunflower");
+    flower.setAttribute("aria-label", "Taldai gareko sunflower catch gara");
     flower.style.left = `${5 + Math.random() * 82}%`;
     let steppedFall;
     if (reduce) {
@@ -409,7 +409,7 @@
     return button;
   }
   function personalize(text) {
-    return text.split("{name}").join(C.nicknames[0] || "sunshine")
+    return text.split("{name}").join(C.nicknames[0] || "mero sunshine")
       .split("{creator}").join(C.creator);
   }
   function withValues(text, values) {
@@ -491,7 +491,7 @@
       button.dataset.snack = snack;
       list.appendChild(button);
     });
-    const surprise = makeButton("🎉 A funny snack surprise", "btn");
+    const surprise = makeButton("🎉 Euta funny snack surprise", "btn");
     surprise.dataset.worldAction = "snack-surprise";
     controls.append(list, surprise);
   }
@@ -528,7 +528,7 @@
     const list = document.createElement("div");
     list.className = "flower-grid";
     C.worlds.sunflowers.flowers.forEach((flower, index) => {
-      const button = makeButton(`🌻 Flower ${index + 1}`, "garden-flower");
+      const button = makeButton(`🌻 Flower no. ${index + 1}`, "garden-flower");
       button.dataset.worldAction = "flower";
       button.dataset.flower = index;
       if (foundFlowers.has(index)) button.classList.add("bloomed");
@@ -564,7 +564,7 @@
       const option = category.options[Number(button.dataset.option)];
       fashionSelections[fashionCategory] = option.name;
       $("world-art").textContent = option.emoji;
-      showWorldFeedback(`${option.name} — a lovely choice, ${C.nicknames[0]}!`);
+      showWorldFeedback(`${option.name} — wah, mero ${C.nicknames[0]}, ekdam ramro choice!`);
     } else if (action === "fashion-surprise") {
       const chosen = C.worlds.fashion.categories.map(category => {
         const option = pick(category.options);
@@ -609,7 +609,7 @@
   function renderClues() {
     const grid = $("clue-grid");
     C.surprise.clues.forEach((_, index) => {
-      const button = makeButton(`🌻 Sunflower clue ${index + 1}`, "clue-button");
+      const button = makeButton(`🌻 Sunflower clue no. ${index + 1}`, "clue-button");
       button.dataset.clue = index;
       button.disabled = true;
       grid.appendChild(button);
@@ -618,7 +618,7 @@
   }
   function updateClueProgress() {
     const found = $("clue-grid").querySelectorAll(".found").length;
-    $("clue-progress").textContent = `${found} of ${C.surprise.clues.length} found`;
+    $("clue-progress").textContent = `${C.surprise.clues.length} ma ${found} clues bhetiyo`;
     const ready = surpriseGiftOpened && found === C.surprise.clues.length;
     $("reveal-letter").hidden = !ready;
   }
@@ -638,7 +638,7 @@
     const index = Number(button.dataset.clue);
     button.disabled = true;
     button.classList.add("found");
-    button.textContent = `🌼 Clue ${index + 1} found`;
+    button.textContent = `🌼 Clue ${index + 1} bhetiyo`;
     $("clue-reveal").textContent = C.surprise.clues[index];
     $("clue-reveal").hidden = false;
     updateClueProgress();

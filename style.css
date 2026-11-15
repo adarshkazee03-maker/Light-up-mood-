@@ -225,9 +225,9 @@ body.scene-happy .journey-heading h1{color:#714f38}
   animation:bubble-float 2.4s ease-in-out infinite alternate;transition:opacity .2s,scale .2s}
 .bubble-target:nth-child(3n){animation-delay:-.8s}.bubble-target:nth-child(2n){animation-delay:-1.4s}
 .bubble-target:hover{scale:1.12}
-.bubble-target.popped{animation:bubble-pop .28s forwards;pointer-events:none}
+.bubble-target.popped{opacity:0;scale:.1;animation:bubble-pop .28s forwards;pointer-events:none}
 @keyframes bubble-float{to{translate:0 -7px}}
-@keyframes bubble-pop{to{scale:1.55;opacity:0}}
+@keyframes bubble-pop{from{scale:1;opacity:1}to{scale:1.55;opacity:0}}
 .bubble-field.breathing{animation:soft-breathe 4s ease-in-out infinite}
 @keyframes soft-breathe{50%{transform:scale(.97);opacity:.74}}
 .angry-screen .back-to-moods{background:linear-gradient(180deg,#ffe7b0,#f6bd78)}

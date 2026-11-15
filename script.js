@@ -281,13 +281,27 @@
     flower.textContent = "🌻";
     flower.setAttribute("aria-label", "Catch this falling sunflower");
     flower.style.left = `${5 + Math.random() * 82}%`;
+    let steppedFall;
+    if (reduce) {
+      let step = 0;
+      steppedFall = setInterval(() => {
+        step++;
+        flower.style.top = `${Math.min(step * 25, 125)}px`;
+        if (step === 5) clearInterval(steppedFall);
+      }, 700);
+    }
+    const cleanup = setTimeout(() => {
+      clearInterval(steppedFall);
+      flower.remove();
+    }, 4400);
     flower.onclick = () => {
+      clearInterval(steppedFall);
+      clearTimeout(cleanup);
       boredScore++;
       $("catch-score").textContent = boredScore;
       flower.remove();
     };
     field.appendChild(flower);
-    setTimeout(() => flower.remove(), 4400);
   }
   function stopBoredGame() {
     clearInterval(boredTimer);

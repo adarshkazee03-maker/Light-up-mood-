@@ -88,7 +88,7 @@ window.CONFIG = {
         "Timro lagi pocket bhari imaginary confetti cha. ✨"
       ],
       questions: [
-        {clue:"Ma sano pahelo flower hu, gham tira farkinchhu, sunny day man parauchu.",choices:["🌻 Sunflower","🌙 Moonflower","🍋 Lemon"],answer:0},
+        {clue:"Ma sano pahelo flower hu, gham jata huncha tyatai mukh garchhu, sunny day man parauchu.",choices:["🌻 Sunflower","🌙 Moonflower","🍋 Lemon"],answer:0},
         {clue:"Ma gol-gol ra cheesy chhu, movie night ma chai chadai sakkinchhu.",choices:["🍕 Pizza","🧦 Socks","🌧️ Rain"],answer:0},
         {clue:"Mero shell cha, sano khutta cha, ani ghar sadhai sangai bokchhu.",choices:["🐢 Turtle","🐝 Bee","🦋 Butterfly"],answer:0},
         {clue:"Ma aakash bata jharchhu, raindrop chai haina. Jado ma chamkinchhu.",choices:["❄️ Snowflake","🌼 Daisy","🍪 Cookie"],answer:0}
